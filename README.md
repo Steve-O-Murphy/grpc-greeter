@@ -12,8 +12,6 @@ Copy `.env.example` to a real `.env` file. `.gitignore` ignores `.env`.
 
 `cp .env.example .env`
 
-# Run Dockerless
-
 1. `npm install`
 
 1. `node server.js`
@@ -22,4 +20,4 @@ Copy `.env.example` to a real `.env` file. `.gitignore` ignores `.env`.
 
 # Run Dockerized
 
-docker build -t grpc-greeter .
+Instructions in a future commit.
