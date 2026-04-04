@@ -17,7 +17,3 @@ Copy `.env.example` to a real `.env` file. `.gitignore` ignores `.env`.
 1. `node server.js`
 
 1. `node client.js`
-
-# Run Dockerized
-
-Instructions in a future commit.
