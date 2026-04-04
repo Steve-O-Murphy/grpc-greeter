@@ -5,13 +5,19 @@
   "main": "client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "cross-env NODE_ENV=prod node server.js",
+    "dev": "cross-env NODE_ENV=dev node server.js",
+    "prod": "cross-env NODE_ENV=prod node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@grpc/grpc-js": "^1.14.3",
-    "@grpc/proto-loader": "^0.8.0"
+    "@grpc/proto-loader": "^0.8.0",
+    "dotenv": "^17.4.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
