@@ -1,8 +1,3 @@
-# Setup
-cp .env.example .env
-
-npm install
-
 # gPRC Greeter
 A minimal Node.js service demonstrating high-performance RPC using Protocol Buffers.
 
@@ -12,10 +7,15 @@ Services are defined in .proto files and generate client/server code across mult
 gRPC supports unary and streaming calls, making it suitable for real-time and distributed systems.
 This project showcases a simple client-server interaction using dynamic proto loading in Node.js.
 
+# Setup
+Copy `.env.example` to a real `.env` file. `.gitignore` ignores `.env`.
+
+`cp .env.example .env`
+
 # Run
 
-1 npm install
+1 `npm install`
 
-2 node server.js
+2 `node server.js`
 
-3 node client.js
+3 `node client.js`
