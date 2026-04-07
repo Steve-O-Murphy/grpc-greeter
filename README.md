@@ -57,7 +57,7 @@ Service: `Greeter`
 | message  | string | Greeting or error message |
 
 
-4. Request/Response Examples
+### Request/Response Examples
 
 Example Request
 
