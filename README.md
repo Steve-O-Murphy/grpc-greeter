@@ -18,7 +18,7 @@ Copy `.env.example` to a real `.env` file. `.gitignore` ignores `.env`.
 
 1. `node client.js`
 
-# Documentation
+# Service Documentation
 
 ## Overview
 
