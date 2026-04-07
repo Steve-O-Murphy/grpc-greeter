@@ -125,14 +125,19 @@ Example Response (Error)
 
 ### Running the Service
 
+#### Start Server
+
+```bash
+npm run dev
+```
+
+#### Run Client 
+
 ```bash
 npm run client:dev
 ```
 
-#### Start Server
 
-
-#### Run Client 
 
 
 
