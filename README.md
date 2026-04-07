@@ -31,7 +31,7 @@ The Greeter service provides a simple RPC endpoint for generating personalized g
 Service: `Greeter`
 
 | Method | Type | Descripton |
-|:--------|:--------|
+|:--------|:--------|:--------|
 | SayHello | Unary | Returns a greeting message based on input parameters |
 
 ### RPC Method Details
