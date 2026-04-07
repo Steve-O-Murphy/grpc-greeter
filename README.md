@@ -26,7 +26,7 @@ The Greeter service provides a simple RPC endpoint for generating personalized g
 
 ## Service Definition
 
-### Service Definition
+## Service Definition
 
 Service: `Greeter`
 
@@ -34,7 +34,7 @@ Service: `Greeter`
 |:--------|:--------|:--------|
 | SayHello | Unary | Returns a greeting message based on input parameters |
 
-### RPC Method Details
+## RPC Method Details
 
 `SayHello`
 
@@ -42,7 +42,7 @@ Service: `Greeter`
 
 **Response Type:** `HelloReply`
 
-#### Request Fields
+### Request Fields
 
 | Field | Type | Required | Description |
 |:----------|:----------|:----------|:----------|
@@ -50,13 +50,37 @@ Service: `Greeter`
 | age  | int32  | No | User's age |
 | password | string  | Optional | Password for authentication |
 
-#### Response Fields
+### Response Fields
 
 | Field | Type | Description |
 |:----------|:----------|:----------|
 | message  | string | Greeting or error message |
 
 
+4. Request/Response Examples
 
+Example Request
 
+```json
+{
+  "name": "Stevie",
+  "age": 29,
+  "pswd": "asdf"
+}
+```
+
+Example Response (Success)
+
+```json
+{
+  "message": "Hello, Stevie! You are 29 years old."
+}
+```
+
+Example Response (Error)
+```json
+{
+  "message": "Incorrect password"
+}
+```
 
