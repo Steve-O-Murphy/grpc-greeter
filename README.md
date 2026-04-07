@@ -102,8 +102,20 @@ Example Response (Error)
 
 ### Error Handling
 
+|Scenario|Behavior|
+|:----------|:----------|
+| Invalid password | Returns error message in response |
+| Missing fields | Uses defaults |
+| Server unavailable | Client receives gRPC error |
 
-### Hoow It Works
+
+### How It Works
+1 Client constructs HelloRequest
+1 gRPC serializes request using protobuf
+1 Request sent over HTTP/2
+1 Server receives and deserializes request
+1 Business logic executes
+1 Response returned to client
 
 
 ### Running the Service
