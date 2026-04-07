@@ -31,7 +31,7 @@ The Greeter service provides a simple RPC endpoint for generating personalized g
 Service: `Greeter`
 
 | Method | Type | Descripton |
-| :-------- | :-------- |
+|:--------|:--------|
 | SayHello | Unary | Returns a greeting message based on input parameters |
 
 ### RPC Method Details
@@ -39,15 +39,22 @@ Service: `Greeter`
 `SayHello`
 
 **Request Type:** `HelloRequest`
+
 **Response Type:** `HelloReply`
 
 #### Request Fields
 
-| Column 1 | Column 2 | Column 3 | Column 4 |
-|----------|----------|----------|----------|
-| Row 1 A  | Row 1 B  | Row 1 C  | Row 1 D  |
-| Row 2 A  | Row 2 B  | Row 2 C  | Row 2 D  |
-| Row 3 A  | Row 3 B  | Row 3 C  | Row 3 D  |
+| Field | Type | Required | Description |
+|:----------|:----------|:----------|:----------|
+| name | string  | Yes | Name of the user |
+| age  | int32  | No | User's age |
+| password | string  | Optional | Password for authentication |
+
+#### Response Fields
+
+| Field | Type | Description |
+|:----------|:----------|:----------|
+| message  | string | Greeting or error message |
 
 
 
