@@ -5,9 +5,11 @@
   "main": "client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=prod node server.js",
-    "dev": "cross-env NODE_ENV=dev node server.js",
-    "prod": "cross-env NODE_ENV=prod node server.js"
+    "start": "node src/server.js",
+    "dev": "cross-env NODE_ENV=dev node src/server.js",
+    "prod": "cross-env NODE_ENV=prod node src/server.js",
+    "client:dev": "cross-env NODE_ENV=dev node src/client.js",
+    "client:prod": "cross-env NODE_ENV=prod node src/client.js"
   },
   "keywords": [],
   "author": "",
