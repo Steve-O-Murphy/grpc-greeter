@@ -24,7 +24,6 @@ Copy `.env.example` to a real `.env` file. `.gitignore` ignores `.env`.
 
 The Greeter service provides a simple RPC endpoint for generating personalized greetings with optional authentication.
 
-## Service Definition
 
 ## Service Definition
 
@@ -91,5 +90,30 @@ Example Response (Error)
   - Service returns "Incorrect password"
 - If missing:
   - Service ends
+
+### Environment Configuration
+
+|Variable|Description|
+|:----------|:----------|
+| PORT | Server port (dafault: 50051 |
+| PSWD | Expected  password value |
+| NODE_ENV | Environment (`dev` or `prod`) |
+
+
+### Error Handling
+
+
+### Hoow It Works
+
+
+### Running the Service
+
+
+#### Start Server
+
+
+#### Run Client 
+
+
 
 
