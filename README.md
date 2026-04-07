@@ -125,6 +125,9 @@ Example Response (Error)
 
 ### Running the Service
 
+``` bash
+npm run client:dev
+```
 
 #### Start Server
 
