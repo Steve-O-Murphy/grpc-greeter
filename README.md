@@ -110,7 +110,7 @@ Example Response (Error)
 
 
 ### How It Works
-1 Client constructs HelloRequest
+1. Client constructs HelloRequest
 
 1. gRPC serializes request using protobuf
 
