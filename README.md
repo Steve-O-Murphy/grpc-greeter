@@ -84,3 +84,12 @@ Example Response (Error)
 }
 ```
 
+### Authentication Behavior
+
+- Password is validated against environment configuration
+- If invalid:
+  - Service returns "Incorrect password"
+- If missing:
+  - Service ends
+
+
