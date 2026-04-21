@@ -1,35 +1,51 @@
-# gPRC Greeter
-A minimal Node.js service demonstrating high-performance RPC using Protocol Buffers.
+## TOC
 
-gRPC is a modern communication framework that enables strongly typed, contract-first APIs over HTTP/2.
-It uses Protocol Buffers (protobuf) for efficient binary serialization, resulting in faster and smaller payloads than REST/JSON.
-Services are defined in .proto files and generate client/server code across multiple languages.
-gRPC supports unary and streaming calls, making it suitable for real-time and distributed systems.
-This project showcases a simple client-server interaction using dynamic proto loading in Node.js.
+[About this project](#-about-this-project)
+[Service Documentation](#service-documentation)
+[Running the service](#️-running-the-service)
+[Testing the service](#-testing)
 
-# Setup
-Copy `.env.example` to a real `.env` file. `.gitignore` ignores `.env`.
 
-`cp .env.example .env`
+# 🚀 About this project
+Demonstrates my knowledge of gRPC and my ability to effectively document a service. Consists of:
 
-1. `npm install`
+- a server waiting for requests
+- a client that sends a request
 
-1. `node server.js`
+Includes automated tests (Jest).
 
-1. `node client.js`
+If you want to dive in and run the server and client, skip to [Running the service](#️-running-the-service). Otherwise, keep reading.
+
 
 # Service Documentation
 
-## Overview
+## 📖 Overview
 
-The Greeter service provides a simple RPC endpoint for generating personalized greetings with optional authentication.
+The Greeter service provides a simple RPC endpoint for generating personalized greetings with  authentication.
+**Note:** gRPC includes true authentication; this project implements it as part of server business logic.
 
 
-## Service Definition
+## 📁 Project Structure
+
+```bash
+project-root/
+├── proto/
+│   └── greeter.proto # gRPC service definitions
+├── src # client + server implementation
+│   ├── app.js
+│   ├── client.js
+│   └── server.js
+├── test # unit/integration tests
+│   └── greeter.test.js
+│── README.md
+└── package.json
+```
+
+## 📜 Service Definition
 
 Service: `Greeter`
 
-| Method | Type | Descripton |
+| Method | Type | Description |
 |:--------|:--------|:--------|
 | SayHello | Unary | Returns a greeting message based on input parameters |
 
@@ -56,7 +72,7 @@ Service: `Greeter`
 | message  | string | Greeting or error message |
 
 
-### Request/Response Examples
+### 🧪 Request/Response Examples
 
 Example Request
 
@@ -95,7 +111,7 @@ Example Response (Error)
 
 |Variable|Description|
 |:----------|:----------|
-| PORT | Server port (dafault: 50051 |
+| PORT | Server port (default: 50051) |
 | PSWD | Expected  password value |
 | NODE_ENV | Environment (`dev` or `prod`) |
 
@@ -108,8 +124,9 @@ Example Response (Error)
 | Missing fields | Uses defaults |
 | Server unavailable | Client receives gRPC error |
 
-
 ### How It Works
+
+#### Overview
 1. Client constructs HelloRequest
 
 1. gRPC serializes request using protobuf
@@ -122,23 +139,32 @@ Example Response (Error)
 
 1. Response returned to client
 
+#### System flow--server
 
-### Running the Service
+1. User runs `npm run start`
+1. server.js runs the code in app.js
+1. app.js defines and exports the PORT, and the `startServer` function
 
-#### Start Server
+### ▶️ Running the service
+
+#### Start Server (dev)
+
+In one shell, run 
 
 ```bash
-npm run dev
+npm run start
 ```
 
 #### Run Client 
+In another shell, run
 
 ```bash
-npm run client:dev
+npm run client
 ```
 
 
+### 🧪 Testing
+Run 
 
-
-
+`npm test`
 

@@ -1,104 +1,68 @@
+/**
+ * Entry point for starting the gRPC server.
+ *
+ * - Invoked via the `start` script in package.json.
+ * - Delegates server creation to app.js (separation of concerns).
+ * - Exports `startServer` so tests can spin up the server programmatically.
+ */
 
-const path = require('path');
-const dotenv = require('dotenv');
+// Add colors for console writes
+const color = {
+  reset: '\x1b[0m',
+  green: '\x1b[32m',
+  red: '\x1b[31m',
+  yellow: '\x1b[33m',
+  cyan: '\x1b[36m',
+};
 
-// Establish the env
-// two envs-- default to 'dev'
-const env = process.env.NODE_ENV || 'dev';
+const green = (text) => `${color.green}${text}${color.reset}`;
+const red = (text) => `${color.red}${text}${color.reset}`;
+const yellow = (text) => `${color.yellow}${text}${color.reset}`;
+const cyan = (text) => `${color.cyan}${text}${color.reset}`;
 
 
-// Load the correct env file
-dotenv.config({ path: `.env.${env}` });
-// Get password value
-const envPswd = process.env.PSWD;
-console.log('[SERVER] Expected password from env:', envPswd);
-
-
+// Define application-specific constants.
 const grpc = require('@grpc/grpc-js');
-const protoLoader = require('@grpc/proto-loader');
-
-const packageDef = protoLoader.loadSync(
-  path.join(__dirname, '../proto/greeter.proto')
-);
-
-const grpcObject = grpc.loadPackageDefinition(packageDef);
-const greeterPackage = grpcObject.greeter;
-
-// Implement the service
-function sayHello(call, callback) {
-  console.log('[SERVER] Type of request:', typeof call.request);
-  console.log('\n📡 [SERVER] Incoming request received');
-  console.log('[SERVER] Raw request object:', call.request);
-  
-  const date = new Date();
-  const fullDate = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
-
-  
-
-  // const name = call.request.name;
-  // name and age
-  const { name, age, pswd } = call.request;
-  console.log(`[SERVER] Extracted → name: ${name}, age: ${age}, pswd: ${pswd}`);
-
-  let message = '';
-  
-  if (pswd) {
-    if (envPswd !== pswd) {
-     console.log('[SERVER] ❌ Password mismatch'); 
-      message = 'Incorrect password';
-    } else {
-      console.log('[SERVER] ✅ Password correct');
-      message = age
-        ? `Hello, ${name}! You are ${age} years old.\nToday is ${fullDate}`
-        : `Hello, ${name}!\nToday is ${fullDate}`;
-    }
-  } else {
-    console.log('[SERVER] ⚠️ No password provided');
-    message = 'Error: Client must send a password.'
-  }
-
-  console.log('[SERVER] 📤 Sending response:', message);
-  callback(null, { message });
-
-}
-
-const server = new grpc.Server();
-server.addService(greeterPackage.Greeter.service, {
-  SayHello: sayHello,
-});
-
-const PORT = process.env.PORT || 50051;
-
-server.bindAsync(
-  `0.0.0.0:${PORT}`,
-  grpc.ServerCredentials.createInsecure(),
-  () => {
-    console.log();
-    console.log('---------------------------------------------');
-    console.log(`Server running at http://0.0.0.0:${PORT}`);
-    console.log('---------------------------------------------');
-    console.log();
-    server.start();
-  }
-);
 
 /*
-
-Start the server in dev mode:
------------------------------
-node server.js
-This is because the env is set to dev by default
-
-
-Start the server in prod mode:
------------------------------
-You have to force it using  NODE_ENV="prod"
-
-
-- Powershell
-$env:NODE_ENV="prod"; node server.js
-
-- Command prompt
-set NODE_ENV=prod && node server.js
-
+  This looks just like variable assignment, but `require('./app')` actually runs the logic in `app.js`
+  We can reference `createServer` and `PORT` because `app.js` exports them.
+  See comments in `app.server`.
 */
+const { createServer, PORT } = require('./app');
+
+function startServer(callback) {
+  const server = createServer();
+  
+  /*
+    Bind the server to a port.
+    - Open a network socket
+    - Reserve the port
+    - Prepares to accept incoming connections
+  */
+  server.bindAsync(
+    `0.0.0.0:${PORT}`,
+    grpc.ServerCredentials.createInsecure(),
+    // Server is live and listening on the port defined in `app.js`
+    // Waiting for gRPC requests
+    // Ready to route calls to `sayHello`
+    (err, boundPort) => {
+      if (err) return callback(err);
+
+      console.log(cyan(`[SERVER] Running on port ${boundPort} 🚀`));
+      callback(null, server);
+    }
+  );
+}
+
+// Entry point check.
+if (require.main === module) {
+  startServer((err) => {
+    if (err) {
+      console.error(red('[SERVER] Failed to start:', err));
+      process.exit(1);
+    }
+  });
+}
+
+module.exports = { startServer };
