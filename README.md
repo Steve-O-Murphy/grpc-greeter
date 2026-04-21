@@ -1,16 +1,20 @@
 ## TOC
 
 [About this project](#-about-this-project)
+
 [Service Documentation](#service-documentation)
+
 [Running the service](#️-running-the-service)
+
 [Testing the service](#-testing)
 
 
 # 🚀 About this project
 Demonstrates my knowledge of gRPC and my ability to effectively document a service. Consists of:
 
-- a server waiting for requests
-- a client that sends a request
+- A server waiting for requests
+
+- A client that sends a request
 
 Includes automated tests (Jest).
 
@@ -22,6 +26,7 @@ If you want to dive in and run the server and client, skip to [Running the servi
 ## 📖 Overview
 
 The Greeter service provides a simple RPC endpoint for generating personalized greetings with  authentication.
+
 **Note:** gRPC includes true authentication; this project implements it as part of server business logic.
 
 
